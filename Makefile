@@ -1,15 +1,16 @@
 LIB := -lpthread
 CCFLAG := -O2
-TARGETS := test
-OBJECTS := pthread_demo.o
 CC := g++
 
-$(TARGETS) : $(OBJECTS)
-	$(CC) -o $@ $< $(LIB)
+pthread : pthread_demo.o
+	$(CC) -o test $< $(LIB)
 
 pthread_demo.o : pthread_demo.cpp
 	$(CC) -c $< $(CCFLAG)
 
+const : const.cpp
+	$(CC) -o test $<
+
 .PHONY : clean
 clean :
-	-rm $(TARGETS) $(OBJECTS)
+	-rm *.o test
